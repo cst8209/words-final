@@ -15,3 +15,29 @@ const words = [
 const $form = document.getElementById('form')
 const $word = document.getElementById('word')
 const $words = document.getElementById('words')
+
+displayWords(words)
+
+$words.addEventListener('click', function (e) {
+  if (e.target.classList.contains('word')) {
+    words.splice(words.indexOf(e.target.textContent), 1)
+    displayWords(words)
+  }
+})
+
+$form.addEventListener('submit', function (e) {
+  e.preventDefault()
+  if ($form.checkValidity()) {
+    words.push($word.value)
+    displayWords(words)
+    $form.reset()
+  }
+})
+
+$word.addEventListener('input', function () {
+   if (words.includes($word.value)) {
+      $word.setCustomValidity('This words is already in the list')
+   } else {
+      $word.setCustomValidity('')
+   }
+})
