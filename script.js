@@ -16,6 +16,15 @@ const $form = document.getElementById('form')
 const $word = document.getElementById('word')
 const $words = document.getElementById('words')
 
+function displayWords (words) {
+  $words.innerHTML = ''
+  $words.append(
+    ...words.map(word => 
+      createElement('div', { className: 'word' }, word)
+    )
+  )
+}
+
 displayWords(words)
 
 $words.addEventListener('click', function (e) {
